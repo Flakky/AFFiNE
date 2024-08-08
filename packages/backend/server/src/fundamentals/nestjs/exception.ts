@@ -48,7 +48,14 @@ export class GlobalExceptionFilter extends BaseExceptionFilter {
       error.log('HTTP');
       metrics.controllers.counter('error').add(1, { status: error.status });
       const res = host.switchToHttp().getResponse<Response>();
-      res.status(error.status).send(error.toJSON());
+      if (res.req.path.startsWith('/api')) {
+        res.status(error.status).send(error.toJSON());
+      } else {
+        res
+          .setHeader('content-type', 'text/plain')
+          .status(error.status)
+          .send(error.toText());
+      }
       return;
     }
   }

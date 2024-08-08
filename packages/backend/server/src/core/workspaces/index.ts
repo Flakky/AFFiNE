@@ -14,6 +14,7 @@ import {
   WorkspaceBlobResolver,
   WorkspaceResolver,
 } from './resolvers';
+import { DocContentService } from './service';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import {
     PagePermissionResolver,
     DocHistoryResolver,
     WorkspaceBlobResolver,
+    DocContentService,
   ],
 })
 export class WorkspaceModule {}
