@@ -23,8 +23,8 @@ import { DisposableGroup } from '@blocksuite/global/utils';
 import { AiIcon, FrameIcon, TocIcon, TodayIcon } from '@blocksuite/icons/rc';
 import { type AffineEditorContainer } from '@blocksuite/presets';
 import type { Doc as BlockSuiteDoc } from '@blocksuite/store';
-import type { Doc } from '@toeverything/infra';
 import {
+  type Doc,
   DocService,
   DocsService,
   FrameworkScope,
@@ -226,10 +226,19 @@ const DetailPageImpl = memo(function DetailPageImpl() {
       const disposable = new DisposableGroup();
       if (pageService) {
         disposable.add(
-          pageService.slots.docLinkClicked.on(({ docId, blockId }) => {
-            return blockId
-              ? jumpToPageBlock(docCollection.id, docId, blockId)
-              : openPage(docCollection.id, docId);
+          pageService.slots.docLinkClicked.on(({ pageId, params }) => {
+            if (params) {
+              const { mode, blockId, elementId } = params;
+              if (mode === 'edgeless') {
+                // TODO(@fundon): jump to element in edgeless mode
+                console.log(elementId);
+              }
+              if (blockId?.length) {
+                return jumpToPageBlock(docCollection.id, pageId, blockId[0]);
+              }
+            }
+
+            return openPage(docCollection.id, pageId);
           })
         );
         disposable.add(
@@ -379,6 +388,30 @@ export const DetailPage = ({ pageId }: { pageId: string }): ReactElement => {
       editor.dispose();
     };
   }, [doc, initialQueryStringMode]);
+
+  // creates new editor with mode
+  useLayoutEffect(() => {
+    if (!doc || !editor) {
+      return;
+    }
+
+    if (doc === editor.doc) {
+      return;
+    }
+
+    editor.dispose();
+
+    const mode = (queryString.mode ||
+      doc.getPrimaryMode() ||
+      'page') as DocMode;
+
+    const newEditor = doc.scope.get(EditorsService).createEditor(mode);
+    setEditor(newEditor);
+
+    return () => {
+      newEditor.dispose();
+    };
+  }, [doc, editor, queryString]);
 
   // update editor mode to queryString
   useEffect(() => {
