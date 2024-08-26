@@ -15,6 +15,11 @@ export const content = style({
       position: 'absolute',
       left: '50%',
       transform: 'translateX(-50%)',
+      width: 'fit-content',
+      maxWidth: 'calc(100% - 12px - 88px - 16px)',
+      display: 'flex',
+      justifyContent: 'center',
+      pointerEvents: 'none',
     },
     '&:not(.center)': {
       width: 0,
