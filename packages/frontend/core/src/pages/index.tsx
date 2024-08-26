@@ -74,7 +74,7 @@ export const Component = ({
         }
       })
       .catch(err => console.error('Failed to create cloud workspace', err));
-  }, [jumpToPage, openPage, workspacesService]);
+  }, [defaultIndexRoute, jumpToPage, openPage, workspacesService]);
 
   useLayoutEffect(() => {
     if (!navigating) {

@@ -3603,7 +3603,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@blocksuite/icons@npm:2.1.63, @blocksuite/icons@npm:^2.1.62":
+"@blocksuite/icons@npm:2.1.63":
   version: 2.1.63
   resolution: "@blocksuite/icons@npm:2.1.63"
   peerDependencies:
@@ -3619,7 +3619,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@blocksuite/icons@npm:^2.1.64":
+"@blocksuite/icons@npm:^2.1.62, @blocksuite/icons@npm:^2.1.64":
   version: 2.1.64
   resolution: "@blocksuite/icons@npm:2.1.64"
   peerDependencies:
@@ -15245,26 +15245,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vanilla-extract/css@npm:^1.14.2, @vanilla-extract/css@npm:^1.15.4":
-  version: 1.15.4
-  resolution: "@vanilla-extract/css@npm:1.15.4"
-  dependencies:
-    "@emotion/hash": "npm:^0.9.0"
-    "@vanilla-extract/private": "npm:^1.0.6"
-    css-what: "npm:^6.1.0"
-    cssesc: "npm:^3.0.0"
-    csstype: "npm:^3.0.7"
-    dedent: "npm:^1.5.3"
-    deep-object-diff: "npm:^1.1.9"
-    deepmerge: "npm:^4.2.2"
-    media-query-parser: "npm:^2.0.2"
-    modern-ahocorasick: "npm:^1.0.0"
-    picocolors: "npm:^1.0.0"
-  checksum: 10/5d56d86d8acd874e4d63a463070d8612cc76683b2e6fb61b57f5351976c8f2504019dd7a71211151c73cee728b9db21c6f5ff96bad7824ac1c9181cc2e3bdaca
-  languageName: node
-  linkType: hard
-
-"@vanilla-extract/css@npm:^1.15.5":
+"@vanilla-extract/css@npm:^1.14.2, @vanilla-extract/css@npm:^1.15.4, @vanilla-extract/css@npm:^1.15.5":
   version: 1.15.5
   resolution: "@vanilla-extract/css@npm:1.15.5"
   dependencies:
@@ -25957,14 +25938,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lru-cache@npm:^10.0.1, lru-cache@npm:^10.2.0":
-  version: 10.2.2
-  resolution: "lru-cache@npm:10.2.2"
-  checksum: 10/ff1a496d30b5eaec2c9079080965bb0cede203cf878371f7033a007f1e54cd4aa13cc8abf7ccec4c994a83a22ed5476e83a55bb57cc07e6c1547a42937e42c37
-  languageName: node
-  linkType: hard
-
-"lru-cache@npm:^10.4.3":
+"lru-cache@npm:^10.0.1, lru-cache@npm:^10.2.0, lru-cache@npm:^10.4.3":
   version: 10.4.3
   resolution: "lru-cache@npm:10.4.3"
   checksum: 10/e6e90267360476720fa8e83cc168aa2bf0311f3f2eea20a6ba78b90a885ae72071d9db132f40fda4129c803e7dcec3a6b6a6fbb44ca90b081630b810b5d6a41a

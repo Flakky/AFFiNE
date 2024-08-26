@@ -14,7 +14,12 @@ import {
   useMemo,
   useState,
 } from 'react';
-import { matchPath, useLocation, useParams } from 'react-router-dom';
+import {
+  matchPath,
+  type RouteObject,
+  useLocation,
+  useParams,
+} from 'react-router-dom';
 
 import { viewRoutes } from '../../router';
 import { WorkspaceLayout } from './layout';
@@ -33,7 +38,13 @@ const MobileRouteContainer = ({ route }: { route: Route }) => {
   );
 };
 
-const warpedRoutes = viewRoutes.map(({ path, lazy }) => {
+const warpedRoutes = viewRoutes.map((originalRoute: RouteObject) => {
+  if (originalRoute.Component || !originalRoute.lazy) {
+    return originalRoute;
+  }
+
+  const { path, lazy } = originalRoute;
+
   const Component = reactLazy(() =>
     lazy().then(m => ({
       default: m.Component as React.ComponentType,
