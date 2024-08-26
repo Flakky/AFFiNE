@@ -17,7 +17,11 @@ export const RecentDocs = ({ max = 5 }: { max?: number }) => {
   }, [allPageMetas, max]);
 
   return (
-    <CollapsibleSection name="recent" title="Recent">
+    <CollapsibleSection
+      name="recent"
+      title="Recent"
+      headerClassName={styles.header}
+    >
       <div className={styles.scroll}>
         <ul className={styles.list}>
           {cardMetas.map((doc, index) => (

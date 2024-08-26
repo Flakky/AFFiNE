@@ -21,6 +21,10 @@ export const cardWrapper = style({
   flexShrink: 0,
 });
 
+export const header = style({
+  margin: '0 8px',
+});
+
 globalStyle(`${cardWrapper} > *`, {
   width: '100%',
   height: '100%',

@@ -2,19 +2,23 @@ import { IconButton } from '@affine/component';
 import { PagePreview } from '@affine/core/components/page-list/page-content-preview';
 import { IsFavoriteIcon } from '@affine/core/components/pure/icons';
 import { CompatibleFavoriteItemsAdapter } from '@affine/core/modules/properties';
+import {
+  WorkbenchLink,
+  type WorkbenchLinkProps,
+} from '@affine/core/modules/workbench';
 import type { DocMeta } from '@blocksuite/store';
 import { useLiveData, useService, WorkspaceService } from '@toeverything/infra';
 import clsx from 'clsx';
-import { forwardRef, type HTMLAttributes, useCallback } from 'react';
+import { forwardRef, useCallback } from 'react';
 
 import * as styles from './styles.css';
 import { DocCardTags } from './tag';
 
-export interface DocCardProps extends HTMLAttributes<HTMLDivElement> {
+export interface DocCardProps extends Omit<WorkbenchLinkProps, 'to'> {
   meta: DocMeta;
 }
 
-export const DocCard = forwardRef<HTMLDivElement, DocCardProps>(
+export const DocCard = forwardRef<HTMLAnchorElement, DocCardProps>(
   function DocCard({ meta, className, ...attrs }, ref) {
     const favAdapter = useService(CompatibleFavoriteItemsAdapter);
     const workspace = useService(WorkspaceService).workspace;
@@ -27,7 +31,12 @@ export const DocCard = forwardRef<HTMLDivElement, DocCardProps>(
     );
 
     return (
-      <div ref={ref} className={clsx(styles.card, className)} {...attrs}>
+      <WorkbenchLink
+        to={`/${meta.id}`}
+        ref={ref}
+        className={clsx(styles.card, className)}
+        {...attrs}
+      >
         <header className={styles.head}>
           <h3 className={styles.title}>
             {meta.title || <span className={styles.untitled}>Untitled</span>}
@@ -46,7 +55,7 @@ export const DocCard = forwardRef<HTMLDivElement, DocCardProps>(
           />
         </main>
         <DocCardTags docId={meta.id} rows={2} />
-      </div>
+      </WorkbenchLink>
     );
   }
 );

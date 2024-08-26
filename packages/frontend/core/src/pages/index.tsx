@@ -36,7 +36,11 @@ export const loader: LoaderFunction = async () => {
   return null;
 };
 
-export const Component = () => {
+export const Component = ({
+  defaultIndexRoute = WorkspaceSubPath.ALL,
+}: {
+  defaultIndexRoute?: WorkspaceSubPath;
+}) => {
   // navigating and creating may be slow, to avoid flickering, we show workspace fallback
   const [navigating, setNavigating] = useState(true);
   const [creating, setCreating] = useState(false);
@@ -66,7 +70,7 @@ export const Component = () => {
         if (defaultDocId) {
           jumpToPage(meta.id, defaultDocId);
         } else {
-          openPage(meta.id, WorkspaceSubPath.ALL);
+          openPage(meta.id, defaultIndexRoute);
         }
       })
       .catch(err => console.error('Failed to create cloud workspace', err));
@@ -93,7 +97,7 @@ export const Component = () => {
         const openWorkspace =
           list.find(w => w.flavour === WorkspaceFlavour.AFFINE_CLOUD) ??
           list[0];
-        openPage(openWorkspace.id, WorkspaceSubPath.ALL);
+        openPage(openWorkspace.id, defaultIndexRoute);
       } else {
         return;
       }
@@ -106,7 +110,7 @@ export const Component = () => {
       const lastId = localStorage.getItem('last_workspace_id');
 
       const openWorkspace = list.find(w => w.id === lastId) ?? list[0];
-      openPage(openWorkspace.id, WorkspaceSubPath.ALL);
+      openPage(openWorkspace.id, defaultIndexRoute);
     }
   }, [
     createCloudWorkspace,
@@ -116,6 +120,7 @@ export const Component = () => {
     listIsLoading,
     loggedIn,
     navigating,
+    defaultIndexRoute,
   ]);
 
   useEffect(() => {

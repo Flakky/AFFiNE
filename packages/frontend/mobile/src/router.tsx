@@ -50,6 +50,14 @@ export const topLevelRoutes = [
 
 export const viewRoutes = [
   {
+    path: '/home',
+    lazy: () => import('./pages/workspace/home'),
+  },
+  {
+    path: '/search',
+    lazy: () => import('./pages/workspace/search'),
+  },
+  {
     path: '/all',
     lazy: () => import('./pages/workspace/all'),
   },

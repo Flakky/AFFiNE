@@ -11,6 +11,11 @@ export const card = style({
   display: 'flex',
   flexDirection: 'column',
   gap: 8,
+
+  color: 'unset',
+  ':visited': { color: 'unset' },
+  ':hover': { color: 'unset' },
+  ':active': { color: 'unset' },
 });
 export const head = style({
   display: 'flex',
